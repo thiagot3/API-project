@@ -1,0 +1,74 @@
+<nav aria-label ="breadcrumb">
+    <ol class ="breadcrumb">
+      <li class ="breadcrumb-item active" aria-current ="page">Atendimento</li>
+    </ol>
+  </nav>
+  <div class= "container">
+    <div class= "card list-atendimento">
+      <h5 class= "card-header">Lista de Atendimentos</h5>
+      <div class= "card-body">
+        <table class= "table">
+            <thead>
+              <tr>
+                <th scope= "col">Id: &nbsp;</th>
+                <th scope= "col">Coordenador:&nbsp;</th>
+                <th scope= "col">Assunto: &nbsp;</th>
+                <th scope= "col">Descrição: &nbsp;</th>
+                <th scope= "col">Data: &nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor= "let atendimento of atendimentos">
+                    <td>{{ atendimento.id }}</td>
+                    <td>{{ atendimento.coordenador }}</td>
+                    <td>{{ atendimento.assunto }}</td>
+                    <td>{{ atendimento.descricao }}</td>
+                    <td>{{ atendimento.data }}</td>
+                <td>
+                  <button type= "button" class= "btn btn-warning btn-sm" (click)= "editAtendimento(atendimento)">Editar</button>
+                  <button type= "button" class= "btn btn-danger btn-sm ml-1" (click)= "deleteAtendimento(atendimento)">Deletar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  
+    <div class= "card add-atendimento">
+        <h5 class= "card-header">Adicionar/Atualizar Atendimento</h5>
+        <div class= "card-body">
+            <form id= "add-form" (ngSubmit)= "f.form.valid && saveAtendimento(f)" #f= "ngForm" novalidate>
+              <div class= "form-group">
+                  <label for= "coordenador">Coordenador: &nbsp;</label>
+                  <input type= "text" [(ngModel)]= "atendimento.coordenador" id= "coordenador" name= "coordenador" #coordenador= "ngModel" required class= "form-control" [ngClass]= "{ 'is-invalid': f.submitted && coordenador.invalid }" placeholder= "Digite o nome do coordenador:">
+                  <div *ngIf= "f.submitted && coordenador.invalid" class= "invalid-feedback">
+                      <div *ngIf= "coordenador.errors.required">O nome do coordenador é Obrigatório</div>
+                  </div>
+              </div>
+              <div class= "form-group">
+                  <label for= "Assunto">Assunto: &nbsp;</label>
+                  <input type= "text" [(ngModel)]= "atendimento.assunto" id= "assunto" name= "assunto" #assunto= "ngModel" required class= "form-control" [ngClass]= "{ 'is-invalid': f.submitted && assunto.invalid }" placeholder= "Digite o assunto:">
+                  <div *ngIf= "f.submitted && assunto.invalid" class= "invalid-feedback">
+                      <div *ngIf= "assunto.errors.required">Assunto é Obrigatório</div>
+                  </div>
+              </div>
+              <div class= "form-group">
+                  <label for= "descricao">Descrição: &nbsp;</label>
+                  <input type= "text" [(ngModel)]= "atendimento.descricao" id= "descricao" name= "descricao" #descricao= "ngModel" required class= "form-control" [ngClass]= "{ 'is-invalid': f.submitted && descricao.invalid }" placeholder= "Digite a descrição:">
+                  <div *ngIf= "f.submitted && descricao.invalid" class= "invalid-feedback">
+                      <div *ngIf= "descricao.errors.required">Descrição é Obrigatória</div>
+                  </div>
+              </div>
+              <div class= "form-group">
+                <label for= "Data">Data: &nbsp;</label>
+                <input type= "date" [(ngModel)]= "atendimento.data" id= "data" name= "data" #data= "ngModel" required class= "form-control" [ngClass]= "{ 'is-invalid': f.submitted && data.invalid }" placeholder= "Digite a data:">
+                <div *ngIf= "f.submitted && data.invalid" class= "invalid-feedback">
+                    <div *ngIf= "data.errors.required">Data é Obrigatória</div>
+                </div>
+            </div>
+              <button type= "submit" class= "btn btn-primary btn-add-car">Salvar</button>
+              <button type= "reset" class= "btn btn-secondary btn-add-car" (click)= "cleanForm(f)">Cancelar</button>
+            </form>
+        </div>
+      </div>
+  </div>
