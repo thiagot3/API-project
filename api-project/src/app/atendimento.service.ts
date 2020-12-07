@@ -10,7 +10,6 @@ import { Atendimento } from 'src/app/atendimento';
   providedIn: 'root'
 })
 export class AtendimentoService {
-    private resource = 'atendimento';
     api = 'http://localhost:3000/atendimento';
 
     constructor(private httpClient: HttpClient) { }

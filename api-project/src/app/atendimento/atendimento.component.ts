@@ -29,7 +29,8 @@ export class AtendimentoComponent implements OnInit {
   }
 
 
-    else {this.atendimentoService.saveAtendimento(this.atendimento).subscribe(() => {
+    else {
+      this.atendimentoService.saveAtendimento(this.atendimento).subscribe(() => {
       this.cleanForm(form);
     });
   }
