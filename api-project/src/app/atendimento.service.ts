@@ -36,7 +36,7 @@ export class AtendimentoService {
             retry(2),
             catchError(this.handleError));
       }
-      getAtendimentoById(id: number): Observable<Atendimento> {
+      getAtendimentoById(id: string): Observable<Atendimento> {
         return this.httpClient.get<Atendimento>(this.api + '/' + id)
           .pipe(
             retry(2),

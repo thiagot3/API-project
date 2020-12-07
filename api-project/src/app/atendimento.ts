@@ -1,6 +1,6 @@
 export interface Atendimento {
 
-    id: number;
+    id: string;
     coordenador: string;
     assunto: string;
     descricao: string;
